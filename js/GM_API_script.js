@@ -3,6 +3,11 @@ var calculatedDistance;
 var directionsService = new google.maps.DirectionsService();
 var directionsRenderer = new google.maps.DirectionsRenderer();
 
+document.getElementById("button").onclick = function () {
+	displayDirection();
+	setTimeout(calculateCost, 30); // КОСТЫЛЬ. НАДО ПРИДУМАТЬ РЕШЕНЕЕ ПОИЗЯЩНЕЕ.
+}
+
 
 function initialize() {
   var mapOptions = {
@@ -32,18 +37,16 @@ function displayDirection(_) {
 			 distanceDisplay.innerHTML = " ";
 			 distanceDisplay.innerHTML = route.legs[0].distance.text;
 			 calculatedDistance = route.legs[0].distance.value; // значение в метрах
-			 return calculatedDistance;
+			 return calculatedDistance; //СЛИШКОМ ПОЗДНО ВОЗВРАЩАЕТ ПЕРЕМЕННУЮ
 		}
-		_(); // заработало, но как? http://jsfiddle.net/4suou1ok/3/
+		_();
 	});
 }
-// разобраться с областью видимости переменной calculatedDistance
-function calculateCost() {
+
+function calculateCost() {  //К МОМЕНТУ, КОГДА ОТРАБАТЫВАЕТ ФУНКЦИЯ calculateCost(), calculatedDistance ЕЩЕ НЕ ПОСЧИТАНО.
 	var costPerKm = 1; // цена в $ за 1 км
 	var cost = costPerKm * Math.round(calculatedDistance/1000);
 	var costDisplay = document.getElementById("cost");
 	costDisplay.innerHTML = " ";
 	costDisplay.innerHTML = cost;
-	console.log("test");
-	console.log(calculatedDistance);
 }
