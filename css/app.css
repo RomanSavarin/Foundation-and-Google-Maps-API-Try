@@ -1,0 +1,17 @@
+﻿body {
+	text-align: center;
+}
+
+h1 {
+  font-size: 1.6875rem; 
+}
+
+.button {
+	padding-top: 0.5rem;
+	padding-bottom: 0.55rem;
+}
+
+#map-canvas {
+	width: 100%;
+	height: 60%;
+}
